@@ -4,6 +4,8 @@
 
 **[Play the game](https://assumie.github.io/debug-dungeon/)** · [See Clutch Lab](https://assumie.github.io/clutch-lab/) · [Explore FoodSnap](https://github.com/assumie/foodsnap-body)
 
+![Debug Dungeon entrance screen](debug-dungeon-game.jpg)
+
 ## The quest
 
 | Room | Challenge | What it demonstrates |

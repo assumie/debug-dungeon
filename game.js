@@ -9,7 +9,7 @@
       question: 'What will the gate do?',
       choices: ['Open—the condition is true', 'Stay closed—shield is false', 'Crash—keys should be a string'],
       answer: 0,
-      hint: '`!shield` means “not shield.” What is the opposite of false?',
+      hint: '!shield means “not shield.” What is the opposite of false?',
       success: 'Correct. You have two keys, and !false is true. The gate opens.'
     },
     {

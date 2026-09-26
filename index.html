@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#110d20">
+  <meta name="description" content="A tiny neon debugging adventure by Esther Lee Qian Hui. Solve three puzzles and escape Debug Dungeon.">
+  <title>Debug Dungeon — an Esther game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="game.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="https://github.com/assumie" aria-label="Esther's GitHub profile"><span class="brand-icon">✳</span> E<span class="brand-slash">/</span>QUEST <small>BY ESTHER</small></a>
+      <div class="top-links"><span class="status-dot" aria-hidden="true"></span><span>ARCADE ONLINE</span><a href="https://github.com/assumie/debug-dungeon" target="_blank" rel="noopener noreferrer">VIEW SOURCE ↗</a></div>
+    </header>
+
+    <main class="layout">
+      <aside class="rail" aria-label="Dungeon progress">
+        <div class="rail-head"><span class="eyebrow">THE QUEST</span><h2>Dungeon<br>map<span>.</span></h2><p>Three rooms. Three patches. One way out.</p></div>
+        <ol class="map-list" id="map-list">
+          <li class="map-step"><span class="map-index">01</span><span><strong>Logic Gate</strong><small>READ THE CODE</small></span><i aria-hidden="true">◇</i></li>
+          <li class="map-step"><span class="map-index">02</span><span><strong>Broken Corridor</strong><small>FIX THE LAYOUT</small></span><i aria-hidden="true">◇</i></li>
+          <li class="map-step"><span class="map-index">03</span><span><strong>Final Boss</strong><small>PATCH A REAL BUG</small></span><i aria-hidden="true">◇</i></li>
+        </ol>
+        <div class="rail-footer"><span class="tiny-orb">✦</span><div>MADE WITH CURIOSITY<small>AND A LITTLE CHAOS.</small></div></div>
+      </aside>
+
+      <div class="workspace">
+        <div class="hud"><span id="chapter-label">WELCOME / THE ENTRANCE</span><div><span>SHARDS <b id="shard-count">0 / 3</b></span><span>TIME <b id="clock">00:00</b></span></div></div>
+
+        <section class="screen" id="intro-screen" aria-labelledby="intro-title">
+          <div class="intro-copy"><div class="eyebrow with-line">AN INTERACTIVE CODE ADVENTURE <span>✦</span></div><h1 id="intro-title">Welcome to the<br><em>Debug Dungeon.</em></h1><p>Someone broke the dungeon's code. Solve three tiny puzzles, collect the patch shards, and escape before the glitches take over.</p><div class="intro-actions"><button class="primary-button" id="start-button">ENTER THE DUNGEON <span>↗</span></button><span>≈ 3 MINUTES · NO SIGN-IN</span></div></div>
+          <div class="scene intro-scene" aria-hidden="true"><div class="scene-grid"></div><div class="halo halo-outer"></div><div class="halo halo-inner"></div><div class="portal"><div class="portal-inner"><span>✳</span></div></div><div class="scene-spark spark-a">✦</div><div class="scene-spark spark-b">✧</div><div class="scene-spark spark-c">✦</div><div class="scene-caption">PRESS START // FOLLOW THE SIGNAL</div></div>
+          <div class="intro-bottom"><span><i>01</i> TRACE THE PROBLEM</span><span><i>02</i> CHOOSE A PATCH</span><span><i>03</i> SEE WHAT HAPPENS</span></div>
+        </section>
+
+        <section class="screen hidden" id="room-screen" aria-labelledby="room-title">
+          <div class="room-head"><span class="eyebrow" id="room-eyebrow"></span><span class="room-difficulty" id="room-type"></span></div>
+          <div class="room-intro"><div><h1 id="room-title"></h1><p id="room-story"></p></div><div class="room-emblem" id="room-emblem" aria-hidden="true"></div></div>
+          <div class="room-body"><div class="terminal"><div class="terminal-top"><span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span><span id="file-name"></span><span class="terminal-tag">GLITCH DETECTED</span></div><pre><code id="code-block"></code></pre><div class="terminal-bottom"><span>ESTHER / DEBUG DUNGEON</span><span>READ BEFORE YOU PATCH ✳</span></div></div><div class="puzzle"><div class="puzzle-top"><span class="eyebrow">YOUR MOVE</span><button id="hint-button" class="hint-button" type="button">✦ REVEAL HINT</button></div><h2 id="question"></h2><p id="hint-text" class="hint-text hidden"></p><div id="choices" class="choices"></div><div id="feedback" class="feedback" role="status" aria-live="polite"></div><button id="next-button" class="primary-button hidden" type="button">NEXT ROOM <span>↗</span></button></div></div>
+        </section>
+
+        <section class="screen win-screen hidden" id="win-screen" aria-labelledby="win-title"><div class="win-stars" aria-hidden="true">✦ &nbsp; ✳ &nbsp; ✦</div><span class="eyebrow">QUEST COMPLETE / ALL SYSTEMS RESTORED</span><h1 id="win-title">You escaped.<br><em>Legendary move.</em></h1><p>Three bugs down. The dungeon is safe again—and you've seen how I think through code, design, and real project mistakes.</p><div class="win-stats"><div><strong id="final-time">00:00</strong><small>CLEAR TIME</small></div><div><strong id="final-hints">0</strong><small>HINTS USED</small></div><div><strong id="best-time">—</strong><small>YOUR BEST</small></div></div><div class="win-actions"><button id="again-button" class="primary-button">PLAY AGAIN ↗</button><a class="secondary-button" href="https://github.com/assumie/debug-dungeon" target="_blank" rel="noopener noreferrer">EXPLORE THE CODE ↗</a></div><div class="more-projects"><span>MORE FROM ESTHER</span><a href="https://assumie.github.io/clutch-lab/" target="_blank" rel="noopener noreferrer">CLUTCH LAB ↗</a><a href="https://github.com/assumie/foodsnap-body" target="_blank" rel="noopener noreferrer">FOODSNAP ↗</a></div></section>
+
+        <footer><span>DEBUG DUNGEON © 2026 · ESTHER LEE QIAN HUI</span><span>BUILT TO BE PLAYED, NOT JUST READ.</span></footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

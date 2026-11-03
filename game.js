@@ -23,7 +23,7 @@
       success: 'Nice. A single grid column lets the rooms stack on small screens.'
     },
     {
-      title: 'The Final Boss', eyebrow: 'ROOM 03 / THE REAL BUG', type: 'JAVASCRIPT · BOSS', emblem: '✳', file: 'clutch-lab/app.js',
+      title: 'The Final Boss', eyebrow: 'ROOM 03 / THE REAL BUG', type: 'JAVASCRIPT · BOSS', file: 'clutch-lab/app.js',
       story: 'This one happened while I built Clutch Lab. The session form would not open. The helper expects an ID, but it was given a CSS selector.',
       code: `const $ = (id) =>\n  document.getElementById(id);\n\nfunction openLog() {\n  // This returned null, then crashed:\n  $('reason-options input').checked = true;\n  dialog.showModal();\n}`,
       question: 'Which line finds the input and fixes the crash?',
@@ -101,11 +101,11 @@
     $('hint-text').textContent = room.hint;
     $('hint-text').classList.add('hidden');
     $('hint-button').disabled = false;
-    $('hint-button').textContent = '✦ REVEAL HINT';
+    $('hint-button').textContent = 'SHOW A HINT';
     $('feedback').textContent = '';
     $('feedback').classList.remove('success');
     $('next-button').classList.add('hidden');
-    $('next-button').innerHTML = current === rooms.length - 1 ? 'ESCAPE THE DUNGEON <span>↗</span>' : 'NEXT ROOM <span>↗</span>';
+    $('next-button').textContent = current === rooms.length - 1 ? 'ESCAPE THE DUNGEON' : 'NEXT ROOM';
     const choices = $('choices');
     choices.replaceChildren();
     room.choices.forEach((label, index) => {

@@ -36,6 +36,6 @@ Open `http://localhost:8000/`. The app uses plain HTML, CSS, and JavaScript. `in
 
 ## Design notes
 
-The visual style echoes my purple and neon GitHub profile, but the puzzles carry the story. A wrong choice can be retried without a penalty. Hints are counted for reflection, not used to block progress. All code examples are rendered as text, and the game never asks visitors to run unknown code.
+The visual style uses warm paper, charcoal, and restrained rust. Clear code panels keep attention on each puzzle. A wrong choice can be retried without a penalty. Hints are counted for reflection, not used to block progress. All code examples are rendered as text, and the game never asks visitors to run unknown code.
 
 This is an original educational mini-game, not an official Counter-Strike or GitHub product.

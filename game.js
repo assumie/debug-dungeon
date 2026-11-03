@@ -3,7 +3,7 @@
 
   const rooms = [
     {
-      title: 'The Logic Gate', eyebrow: 'ROOM 01 / THE ENTRANCE', type: 'LOGIC · EASY', emblem: '◇', file: 'gate.js',
+      title: 'The Logic Gate', eyebrow: 'ROOM 01 / THE ENTRANCE', type: 'LOGIC · EASY', file: 'gate.js',
       story: 'The door only opens for someone who reads the condition carefully. What happens when this code runs?',
       code: `const keys = 2;\nconst shield = false;\n\nif (keys >= 2 && !shield) {\n  gate.open();\n} else {\n  gate.stayClosed();\n}`,
       question: 'What will the gate do?',
@@ -13,7 +13,7 @@
       success: 'Correct. You have two keys, and !false is true. The gate opens.'
     },
     {
-      title: 'Broken Corridor', eyebrow: 'ROOM 02 / THE LAYOUT', type: 'CSS · INTERMEDIATE', emblem: '▤', file: 'corridor.css',
+      title: 'Broken Corridor', eyebrow: 'ROOM 02 / THE LAYOUT', type: 'CSS · INTERMEDIATE', file: 'corridor.css',
       story: 'The corridor looks fine on a desktop, but its three columns crush together on a phone. Choose the patch.',
       code: `.corridor {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}\n\n@media (max-width: 600px) {\n  .corridor {\n    /* add one rule here */\n  }\n}`,
       question: 'Which rule gives each room space on a small screen?',
@@ -23,7 +23,7 @@
       success: 'Nice. A single grid column lets the rooms stack on small screens.'
     },
     {
-      title: 'The Final Boss', eyebrow: 'ROOM 03 / THE REAL BUG', type: 'JAVASCRIPT · BOSS', emblem: '✳', file: 'clutch-lab/app.js',
+      title: 'The Final Boss', eyebrow: 'ROOM 03 / THE REAL BUG', type: 'JAVASCRIPT · BOSS', file: 'clutch-lab/app.js',
       story: 'This one happened while I built Clutch Lab. The session form would not open. The helper expects an ID, but it was given a CSS selector.',
       code: `const $ = (id) =>\n  document.getElementById(id);\n\nfunction openLog() {\n  // This returned null, then crashed:\n  $('reason-options input').checked = true;\n  dialog.showModal();\n}`,
       question: 'Which line finds the input and fixes the crash?',
@@ -68,7 +68,7 @@
       const done = index < current || (index === current && cleared) || current >= rooms.length;
       step.classList.toggle('done', done);
       step.classList.toggle('current', index === current && !cleared);
-      step.querySelector('i').textContent = done ? '✦' : '◇';
+      step.querySelector('i').textContent = done ? 'DONE' : index === current ? 'NOW' : '—';
       step.setAttribute('aria-label', `${rooms[index].title}: ${done ? 'complete' : index === current ? 'current' : 'locked'}`);
     });
     $('shard-count').textContent = `${Math.max(0, Math.min(rooms.length, current + (cleared ? 1 : 0)))} / ${rooms.length}`;
@@ -94,18 +94,18 @@
     $('room-type').textContent = room.type;
     $('room-title').textContent = room.title;
     $('room-story').textContent = room.story;
-    $('room-emblem').textContent = room.emblem;
+    
     $('file-name').textContent = room.file;
     $('code-block').textContent = room.code;
     $('question').textContent = room.question;
     $('hint-text').textContent = room.hint;
     $('hint-text').classList.add('hidden');
     $('hint-button').disabled = false;
-    $('hint-button').textContent = '✦ REVEAL HINT';
+    $('hint-button').textContent = 'SHOW A HINT';
     $('feedback').textContent = '';
     $('feedback').classList.remove('success');
     $('next-button').classList.add('hidden');
-    $('next-button').innerHTML = current === rooms.length - 1 ? 'ESCAPE THE DUNGEON <span>↗</span>' : 'NEXT ROOM <span>↗</span>';
+    $('next-button').textContent = current === rooms.length - 1 ? 'ESCAPE THE DUNGEON' : 'NEXT ROOM';
     const choices = $('choices');
     choices.replaceChildren();
     room.choices.forEach((label, index) => {

@@ -3,7 +3,7 @@
 
   const rooms = [
     {
-      title: 'The Logic Gate', eyebrow: 'ROOM 01 / THE ENTRANCE', type: 'LOGIC · EASY', emblem: '◇', file: 'gate.js',
+      title: 'The Logic Gate', eyebrow: 'ROOM 01 / THE ENTRANCE', type: 'LOGIC · EASY', file: 'gate.js',
       story: 'The door only opens for someone who reads the condition carefully. What happens when this code runs?',
       code: `const keys = 2;\nconst shield = false;\n\nif (keys >= 2 && !shield) {\n  gate.open();\n} else {\n  gate.stayClosed();\n}`,
       question: 'What will the gate do?',
@@ -13,7 +13,7 @@
       success: 'Correct. You have two keys, and !false is true. The gate opens.'
     },
     {
-      title: 'Broken Corridor', eyebrow: 'ROOM 02 / THE LAYOUT', type: 'CSS · INTERMEDIATE', emblem: '▤', file: 'corridor.css',
+      title: 'Broken Corridor', eyebrow: 'ROOM 02 / THE LAYOUT', type: 'CSS · INTERMEDIATE', file: 'corridor.css',
       story: 'The corridor looks fine on a desktop, but its three columns crush together on a phone. Choose the patch.',
       code: `.corridor {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}\n\n@media (max-width: 600px) {\n  .corridor {\n    /* add one rule here */\n  }\n}`,
       question: 'Which rule gives each room space on a small screen?',
@@ -68,7 +68,7 @@
       const done = index < current || (index === current && cleared) || current >= rooms.length;
       step.classList.toggle('done', done);
       step.classList.toggle('current', index === current && !cleared);
-      step.querySelector('i').textContent = done ? '✦' : '◇';
+      step.querySelector('i').textContent = done ? 'DONE' : index === current ? 'NOW' : '—';
       step.setAttribute('aria-label', `${rooms[index].title}: ${done ? 'complete' : index === current ? 'current' : 'locked'}`);
     });
     $('shard-count').textContent = `${Math.max(0, Math.min(rooms.length, current + (cleared ? 1 : 0)))} / ${rooms.length}`;
@@ -94,7 +94,7 @@
     $('room-type').textContent = room.type;
     $('room-title').textContent = room.title;
     $('room-story').textContent = room.story;
-    $('room-emblem').textContent = room.emblem;
+    
     $('file-name').textContent = room.file;
     $('code-block').textContent = room.code;
     $('question').textContent = room.question;
